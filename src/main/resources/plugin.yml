@@ -1,0 +1,4 @@
+name: TPCraftPlugin
+version: '${project.version}'
+main: cn.tpcraft.minecraft.plugin.TPCraftPlugin
+api-version: 1.19
