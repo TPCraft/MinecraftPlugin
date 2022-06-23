@@ -1,0 +1,85 @@
+####################
+# 前缀
+####################
+Prefix:
+  TPCraftPlugin: "&7&l【&6&lTPCraftPlugin&7&l】 &c&l>> &r"
+  BanUser: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l封禁&7&l] &c&l>> &r"
+  PassVerify: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l通行证验证&7&l] &c&l>> &r"
+  Recharge: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l充值&7&l] &c&l>> &r"
+  WebLogin: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l互联登入&7&l] &c&l>> &r"
+
+####################
+# 错误
+####################
+Error:
+  Admin: "发生错误，请查看控制台。"
+  Player: "发生错误，请联系管理员。"
+
+####################
+# TPCraftPlugin
+####################
+TPCraftPlugin:
+  PermissionDenied: "权限不足。"
+  ReloadConfig: "配置文件重载成功。"
+  Help:
+    - "--------------------"
+    - "&7&l[&6&l充值&7&l]"
+    - "充值 - /recharge add <数额>"
+    - "汇率查询 - /recharge exchangerate"
+    - "--------------------"
+    - "&7&l[&6&l封禁&7&l]"
+    - "封禁通行证 - /ban <通行证用户名> <原因> <时间(秒)>"
+    - "--------------------"
+
+####################
+# BanUser
+####################
+#消息变量 {Message}
+#封禁玩家变量 {Player}
+#封禁原因变量 {Reason}
+#解封日期变量 {UnBanDate}
+BanUser:
+  Help: "帮助 /tpcraft help"
+  Success: "封禁成功。"
+  Fail: "封禁失败，原因：{Message}。"
+  Broadcast: "玩家 {Player} 被管理员封禁。"
+  Kick: "\n\n&c通行证封禁中\n\n&7&l【&6&l原因&7&l】&r{Reason}\n\n&7&l【&6&l解封日期&7&l】&r{UnBanDate}"
+
+####################
+# PassVerify
+####################
+#原因变量 {Reason}
+PassVerify:
+  Kick: "\n\n&c你已被踢出服务器\n\n&7&l【&6&l原因&7&l】&r{Reason}\n\n&7&l【&6&l帮助&7&l】&r&nhttps://community.tpcraft.cn/d/33"
+
+####################
+# Recharge
+####################
+#汇率变量 {ExchangeRate}
+#状态变量 {Status}
+#数额变量 {NumBer}
+#余额变量 {Coin}
+#订单变量 {OrderNumber}
+#原因变量 {Reason}
+Recharge:
+  ExchangeRate: "汇率 1(先锋币):{ExchangeRate}"
+  Help: "帮助 /tpcraft help"
+  Success:
+    - "&7&l[&6&l状态&7&l] {Status}"
+    - "&7&l[&6&l数额&7&l] {NumBer}"
+    - "&7&l[&6&l余额&7&l] {Coin} 先锋币"
+    - "&7&l[&6&l订单&7&l] {OrderNumber} 先锋币"
+  Fail:
+    - "&7&l[&6&l状态&7&l] {Status}"
+    - "&7&l[&6&l原因&7&l] {Reason}"
+
+####################
+# WebLogin
+####################
+#Url变量 {Url}
+WebLogin:
+  Login:
+    - "请打开聊天栏点击下面的Url进行登入。"
+    - "请在3分钟内登入，否则将登入超时。"
+    - "{Url}"
+  Repeat: "请不要同时登入同一个服务器，如果有问题，请联系管理员。"

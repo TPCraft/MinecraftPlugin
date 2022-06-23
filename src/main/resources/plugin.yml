@@ -4,8 +4,12 @@ main: cn.tpcraft.minecraft.plugin.TPCraftPlugin
 api-version: 1.19
 commands:
   tpcraft:
-    description: 插件命令
+    description: TPCraft插件命令
+  tpcraft help:
+    description: TPCraft插件帮助
   ban:
-    description: 封禁命令
-  recharge:
-    description: 充值命令
+    description: TPCraft封禁命令
+  recharge add:
+    description: TPCraft充值命令
+  recharge exchangerate:
+    description: TPCraft充值汇率查询命令
