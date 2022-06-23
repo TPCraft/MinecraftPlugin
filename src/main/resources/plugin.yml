@@ -1,4 +1,11 @@
 name: TPCraftPlugin
-version: '${project.version}'
+version: 1.0.0
 main: cn.tpcraft.minecraft.plugin.TPCraftPlugin
 api-version: 1.19
+commands:
+  tpcraft:
+    description: 插件命令
+  ban:
+    description: 封禁命令
+  recharge:
+    description: 充值命令

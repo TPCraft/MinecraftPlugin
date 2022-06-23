@@ -1,0 +1,58 @@
+####################
+# 变量说明
+####################
+#玩家变量 {Player}
+
+####################
+# 全局设置
+####################
+#DeBug模式
+DeBug: false
+#接口密钥
+ApiKey: ""
+#服务器名称
+Server: ""
+#接口Url
+Url:
+  BanUser: ""
+  PassVerify: ""
+  Recharge: ""
+  WebLogin:
+    Request: ""
+    Info: ""
+    Success: ""
+    Cancel: ""
+
+####################
+# BanUser设置
+####################
+BanUser:
+  #启用
+  Enable: true
+
+####################
+# PassVerify设置
+####################
+PassVerify:
+  #启用
+  Enable: true
+  #进服时检测延迟（秒）
+  TimeOut: 1
+  #在服内循环检测周期（秒）
+  Delay: 3
+
+####################
+# Recharge设置
+####################
+Recharge:
+  #启用
+  Enable: true
+  #充值指令
+  Command: ""
+
+####################
+# WebLogin设置
+####################
+WebLogin:
+  #启用
+  Enable: true
