@@ -88,7 +88,7 @@ public class MainCommand implements CommandExecutor {
                 //无参数
 
                 //发送信息给玩家
-                Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("BanUser.Help")));
+                Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("TPCraftPlugin.Help")));
             }
         } else {
             //权限不足

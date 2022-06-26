@@ -24,6 +24,15 @@ public class MainEvent implements Listener {
      */
     @EventHandler
     public void PlayerJoinEvent(PlayerJoinEvent PlayerJoinEvent) {
+
+        //检查ApiKey与Url
+        if (Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.PassVerify"), "")) {
+            //未填写ApiKey或Url
+
+            //踢出玩家
+            KickPlayer(PlayerJoinEvent.getPlayer(), TPCraftPlugin.Message.getString("Prefix.PassVerify") + TPCraftPlugin.Message.getString("TPCraftPlugin.ConfigIsNull"));
+        }
+
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -32,7 +41,7 @@ public class MainEvent implements Listener {
 
                     //请求服务器
                     JSONObject Request = new Function().HttpGet(
-                            TPCraftPlugin.Plugin.getConfig().getString("Url.PassVerify") + "?" + "&Username=" + PlayerJoinEvent.getPlayer().getName()
+                            TPCraftPlugin.Plugin.getConfig().getString("Url.PassVerify") + "?" + "Username=" + PlayerJoinEvent.getPlayer().getName()
                     );
                     //检查请求状态
                     if (!(boolean)Request.get("Status")) {
@@ -45,30 +54,24 @@ public class MainEvent implements Listener {
                         Message = Message.replace("{Reason}", Request.get("Message").toString());
 
                         //踢出玩家
-                        PlayerJoinEvent.getPlayer().kickPlayer(
-                                translateAlternateColorCodes('&',
-                                        TPCraftPlugin.Message.getString("Prefix.PassVerify") + Message
-                                )
-                        );
+                        KickPlayer(PlayerJoinEvent.getPlayer(), TPCraftPlugin.Message.getString("Prefix.PassVerify") + Message);
                     }
                 } catch (Exception Exception) {
 
                     //发送信息给控制台
                     getLogger().warning(Exception.toString());
                     //踢出玩家
-                    PlayerJoinEvent.getPlayer().kickPlayer(
-                            translateAlternateColorCodes('&',
-                                    TPCraftPlugin.Message.getString("Prefix.PassVerify") + TPCraftPlugin.Message.getString("Error.Player")
-                            )
-                    );
+                    KickPlayer(PlayerJoinEvent.getPlayer(), TPCraftPlugin.Message.getString("Prefix.PassVerify") + TPCraftPlugin.Message.getString("Error.Player"));
                 }
             }
-        }.runTaskLaterAsynchronously(TPCraftPlugin.getPlugin(TPCraftPlugin.class), TPCraftPlugin.Plugin.getConfig().getInt("PassVerify.TimeOut") * 20);
+        }.runTaskLater(TPCraftPlugin.getPlugin(TPCraftPlugin.class), TPCraftPlugin.Plugin.getConfig().getInt("PassVerify.TimeOut") * 20);
     }
 
     /*
      * 服务器启动完毕事件
      */
+
+    /*
     @EventHandler
     public void ServerLoadEvent(ServerLoadEvent ServerLoadEvent) {
         new BukkitRunnable() {
@@ -81,7 +84,7 @@ public class MainEvent implements Listener {
 
                         //请求服务器
                         JSONObject Request = new Function().HttpGet(
-                                TPCraftPlugin.Plugin.getConfig().getString("Url.PassVerify") + "?" + "&Username=" + Player.getPlayer().getName()
+                                TPCraftPlugin.Plugin.getConfig().getString("Url.PassVerify") + "?" + "Username=" + Player.getPlayer().getName()
                         );
                         //检查请求状态
                         if (!(boolean)Request.get("Status")) {
@@ -94,11 +97,7 @@ public class MainEvent implements Listener {
                             Message = Message.replace("{Reason}", Request.get("Message").toString());
 
                             //踢出玩家
-                            Player.getPlayer().kickPlayer(
-                                    translateAlternateColorCodes('&',
-                                            TPCraftPlugin.Message.getString("Prefix.PassVerify") + Message
-                                    )
-                            );
+                            KickPlayer(Player, TPCraftPlugin.Message.getString("Prefix.PassVerify") + Message);
                         }
                     } catch (Exception Exception) {
                         //发生错误
@@ -106,14 +105,18 @@ public class MainEvent implements Listener {
                         //发送信息给控制台
                         getLogger().warning(Exception.toString());
                         //踢出玩家
-                        Player.getPlayer().kickPlayer(
-                                translateAlternateColorCodes('&',
-                                        TPCraftPlugin.Message.getString("Prefix.PassVerify") + TPCraftPlugin.Message.getString("Error.Player")
-                                )
-                        );
+                        KickPlayer(Player, TPCraftPlugin.Message.getString("Prefix.PassVerify") + TPCraftPlugin.Message.getString("Error.Player"));
                     }
                 }
             }
-        }.runTaskTimerAsynchronously(TPCraftPlugin.getPlugin(TPCraftPlugin.class),0 ,TPCraftPlugin.Plugin.getConfig().getInt("PassVerify.Delay") * 20);
+        }.runTaskTimer(TPCraftPlugin.getPlugin(TPCraftPlugin.class),0 ,TPCraftPlugin.Plugin.getConfig().getInt("PassVerify.Delay") * 20);
+    }
+    */
+
+    /*
+     * 踢出玩家
+     */
+    public void KickPlayer(Player Player, String Message) {
+        Player.kickPlayer(translateAlternateColorCodes('&', Message));
     }
 }

@@ -29,7 +29,7 @@ public final class TPCraftPlugin extends JavaPlugin {
         //注册指令
         RegisterCommand();
         //输出日志
-        getLogger().info("【TPCraftPlugin】已加载完毕。");
+        getLogger().info("[TPCraftPlugin]已加载完毕。");
     }
 
     /*
@@ -38,7 +38,7 @@ public final class TPCraftPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         //输出日志
-        getLogger().info("【TPCraftPlugin】已卸载完毕。");
+        getLogger().info("[TPCraftPlugin]已卸载完毕。");
     }
 
     /*
@@ -63,7 +63,7 @@ public final class TPCraftPlugin extends JavaPlugin {
             //已启用
 
             getServer().getPluginManager().registerEvents(new cn.tpcraft.minecraft.plugin.PassVerify.MainEvent(), this);
-            getLogger().info("【TPCraftPlugin】PassVerify模块已启动。");
+            getLogger().info("[TPCraftPlugin]PassVerify模块已启动。");
         }
     }
 
@@ -71,23 +71,14 @@ public final class TPCraftPlugin extends JavaPlugin {
      * 注册指令
      */
     public void RegisterCommand() {
+        //TPCraftPlugin
+        getCommand("tpcraft").setExecutor(new MainCommand());
         //检查BanUser启用
         if ((boolean)Plugin.getConfig().get("BanUser.Enable")) {
             //已启用
 
             getCommand("ban").setExecutor(new cn.tpcraft.minecraft.plugin.BanUser.MainCommand());
-            getLogger().info("【TPCraftPlugin】BanUser模块已启动。");
+            getLogger().info("[TPCraftPlugin]BanUser模块已启动。");
         }
-    }
-
-    /*
-     * 重载配置文件
-     */
-    public void ReLoadConfig() {
-        //重载配置文件
-        reloadConfig();
-        //读取语言文件
-        File MessageFile = new File(getDataFolder() + "/", "message.yml");
-        Message = YamlConfiguration.loadConfiguration(MessageFile);
     }
 }
