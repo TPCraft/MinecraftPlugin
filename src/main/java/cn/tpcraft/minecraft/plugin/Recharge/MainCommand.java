@@ -97,10 +97,13 @@ public class MainCommand implements CommandExecutor {
                     if ((boolean)Request.get("Status")) {
                         //返回True
 
+                        //调整倍率
+                        NumBer = TPCraftPlugin.Plugin.getConfig().getInt("Recharge.ExchangeRate") * NumBer;
+
                         //初始化指令
                         String SendCommand = TPCraftPlugin.Plugin.getConfig().getString("Recharge.Command");
                         SendCommand = SendCommand.replace("{Player}", Sender.getName());
-                        SendCommand = SendCommand.replace("{Point}", String.valueOf(NumBer));
+                        SendCommand = SendCommand.replace("{NumBer}", String.valueOf(NumBer));
 
                         //检查指令发送
                         if (getServer().dispatchCommand(getServer().getConsoleSender(), SendCommand)) {
