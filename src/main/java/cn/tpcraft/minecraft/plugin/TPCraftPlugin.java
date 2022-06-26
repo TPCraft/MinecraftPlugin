@@ -65,6 +65,13 @@ public final class TPCraftPlugin extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new cn.tpcraft.minecraft.plugin.PassVerify.MainEvent(), this);
             getLogger().info("[TPCraftPlugin]PassVerify模块已启动。");
         }
+        //检查WebLogin启用
+        if ((boolean)Plugin.getConfig().get("WebLogin.Enable")) {
+            //已启用
+
+            getServer().getPluginManager().registerEvents(new cn.tpcraft.minecraft.plugin.WebLogin.MainEvent(), this);
+            getLogger().info("[TPCraftPlugin]WebLogin模块已启动。");
+        }
     }
 
     /*

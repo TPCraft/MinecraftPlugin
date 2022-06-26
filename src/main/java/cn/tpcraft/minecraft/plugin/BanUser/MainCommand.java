@@ -39,7 +39,7 @@ public class MainCommand implements CommandExecutor {
                     //尝试
 
                     //请求服务器
-                    JSONObject Request = new Function().HttpGet(
+                    JSONObject Request = Function.HttpGet(
                             TPCraftPlugin.Plugin.getConfig().getString("Url.BanUser") + "?" + "ApiKey=" + TPCraftPlugin.Plugin.getConfig().getString("ApiKey") + "&Username=" + Args[0] + "&Reason=" + Args[1] + "&Time=" + Args[2]
                     );
                     //检查请求状态

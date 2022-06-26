@@ -15,7 +15,7 @@ import java.security.cert.X509Certificate;
 
 public class Function {
     //HTTP GET请求
-    public JSONObject HttpGet (String Url) throws Exception {
+    public static JSONObject HttpGet (String Url) throws Exception {
         IgnoreSsl();
         HttpsURLConnection HttpsURLConnection = (HttpsURLConnection) new URL(Url).openConnection();
         HttpsURLConnection.setRequestMethod("GET");
@@ -26,7 +26,7 @@ public class Function {
         return JSONObject;
     }
     //HTTP POST请求
-    public JSONObject HttpPost (String Url, JSONObject Data) throws Exception {
+    public static JSONObject HttpPost (String Url, JSONObject Data) throws Exception {
         IgnoreSsl();
         HttpsURLConnection HttpsURLConnection = (HttpsURLConnection) new URL(Url).openConnection();
         HttpsURLConnection.setRequestMethod("POST");

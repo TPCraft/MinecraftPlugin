@@ -55,3 +55,5 @@ Recharge:
 WebLogin:
   #启用
   Enable: true
+  #登入链接
+  Login: "https://auth.tpcraft.cn/Minecraft"
