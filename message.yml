@@ -44,14 +44,14 @@ BanUser:
   Success: "封禁成功。"
   Fail: "封禁失败，原因：{Message}。"
   Broadcast: "玩家 {Player} 被管理员封禁。"
-  Kick: "&c通行证封禁中\n\n&7&l[&6&l原因&7&l] &r{Reason}\n\n&7&l[&6&l解封日期&7&l] &r{UnBanDate}"
+  Kick: "通行证封禁中\n\n&7&l[&6&l原因&7&l] &r{Reason}\n\n&7&l[&6&l解封日期&7&l] &r{UnBanDate}"
 
 ####################
 # PassVerify
 ####################
 #原因变量 {Reason}
 PassVerify:
-  Kick: "&c你已被踢出服务器\n\n&7&l[&6&l原因&7&l] &r{Reason}\n\n&7&l[&6&l帮助&7&l] &r&nhttps://community.tpcraft.cn/d/33"
+  Kick: "你已被踢出服务器\n\n&7&l[&6&l原因&7&l] &r{Reason}\n\n&7&l[&6&l帮助&7&l] &r&nhttps://community.tpcraft.cn/d/33"
 
 ####################
 # Recharge

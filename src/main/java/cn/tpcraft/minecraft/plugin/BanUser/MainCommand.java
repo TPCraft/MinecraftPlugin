@@ -23,11 +23,11 @@ public class MainCommand implements CommandExecutor {
             //拥有权限
 
             //检查ApiKey与Url
-            if (Objects.equals(TPCraftPlugin.Plugin.getConfig().get("ApiKey").toString(), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().get("Url.BanUser").toString(), "")) {
+            if (Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("ApiKey"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.BanUser"), "")) {
                 //未填写ApiKey或Url
 
                 //发送信息给玩家
-                Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("TPCraftPlugin.ConfigIsNull").toString()));
+                Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("TPCraftPlugin.ConfigIsNull")));
                 return false;
             }
 
@@ -40,7 +40,7 @@ public class MainCommand implements CommandExecutor {
 
                     //请求服务器
                     JSONObject Request = new Function().HttpGet(
-                            TPCraftPlugin.Plugin.getConfig().get("Url.BanUser") + "?" + "ApiKey=" + TPCraftPlugin.Plugin.getConfig().get("ApiKey") + "&Username=" + Args[0] + "&Reason=" + Args[1] + "&Time=" + Args[2]
+                            TPCraftPlugin.Plugin.getConfig().getString("Url.BanUser") + "?" + "ApiKey=" + TPCraftPlugin.Plugin.getConfig().getString("ApiKey") + "&Username=" + Args[0] + "&Reason=" + Args[1] + "&Time=" + Args[2]
                     );
                     //检查请求状态
                     if ((boolean)Request.get("Status")) {
@@ -53,28 +53,28 @@ public class MainCommand implements CommandExecutor {
                             //玩家在线
 
                             //获取语言文件
-                            String Message = TPCraftPlugin.Message.get("BanUser.Kick").toString();
+                            String Message = TPCraftPlugin.Message.getString("BanUser.Kick");
 
                             //替换变量
                             Message = Message.replace("{Reason}", Args[1]);
                             Message = Message.replace("{UnBanDate}", (!Objects.equals(Args[2], "-1") ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(((System.currentTimeMillis() / 1000 + Integer.parseInt(Args[2])) * 1000)) : "永不解封"));
 
-                            //踢出封禁玩家
+                            //踢出玩家
                             Player.kickPlayer(
                                     translateAlternateColorCodes('&',
-                                            TPCraftPlugin.Message.get("Prefix.BanUser").toString() + Message
+                                            TPCraftPlugin.Message.getString("Prefix.BanUser") + Message
                                     )
                             );
                         }
                         //广播
-                        broadcastMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("BanUser.Broadcast").toString().replace("{Player}", Args[0])));
+                        broadcastMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("BanUser.Broadcast").replace("{Player}", Args[0])));
                         //发送信息给玩家
-                        Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("BanUser.Success").toString()));
+                        Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("BanUser.Success")));
                     } else {
                         //返回False
 
                         //发送信息给玩家
-                        Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("BanUser.Fail").toString().replace("{Message}", Request.get("Message").toString())));
+                        Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("BanUser.Fail").replace("{Message}", Request.get("Message").toString())));
                     }
                 } catch (Exception Exception) {
                     //发生错误
@@ -82,19 +82,19 @@ public class MainCommand implements CommandExecutor {
                     //发送信息给控制台
                     getLogger().warning(Exception.toString());
                     //发送信息给玩家
-                    Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("Error.Admin").toString()));
+                    Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("Error.Admin")));
                 }
             } else {
                 //无参数
 
                 //发送信息给玩家
-                Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("BanUser.Help").toString()));
+                Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("BanUser.Help")));
             }
         } else {
             //权限不足
 
             //发送信息给玩家
-            Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.get("Prefix.BanUser").toString() + TPCraftPlugin.Message.get("TPCraftPlugin.PermissionDenied").toString()));
+            Sender.sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.BanUser") + TPCraftPlugin.Message.getString("TPCraftPlugin.PermissionDenied")));
         }
         return false;
     }

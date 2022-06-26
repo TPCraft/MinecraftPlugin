@@ -58,7 +58,13 @@ public final class TPCraftPlugin extends JavaPlugin {
      * 监听事件
      */
     public void ListenerEvent() {
+        //检查PassVerify启用
+        if ((boolean)Plugin.getConfig().get("PassVerify.Enable")) {
+            //已启用
 
+            getServer().getPluginManager().registerEvents(new cn.tpcraft.minecraft.plugin.PassVerify.MainEvent(), this);
+            getLogger().info("【TPCraftPlugin】PassVerify模块已启动。");
+        }
     }
 
     /*
