@@ -87,5 +87,12 @@ public final class TPCraftPlugin extends JavaPlugin {
             getCommand("ban").setExecutor(new cn.tpcraft.minecraft.plugin.BanUser.MainCommand());
             getLogger().info("[TPCraftPlugin]BanUser模块已启动。");
         }
+        //检查Recharge启用
+        if ((boolean)Plugin.getConfig().get("Recharge.Enable")) {
+            //已启用
+
+            getCommand("recharge").setExecutor(new cn.tpcraft.minecraft.plugin.Recharge.MainCommand());
+            getLogger().info("[TPCraftPlugin]Recharge模块已启动。");
+        }
     }
 }

@@ -26,7 +26,7 @@ public class MainEvent implements Listener {
     public void PlayerJoinServer(PlayerJoinEvent PlayerJoinEvent) {
 
         //检查ApiKey与Url
-        if (Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("ApiKey"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Request"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Info"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Success"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Cancel"), "")) {
+        if (Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("ApiKey"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("WebLogin.Login"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Request"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Info"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Success"), "") || Objects.equals(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Cancel"), "")) {
             //未填写ApiKey或Url
 
             new BukkitRunnable() {
@@ -64,7 +64,7 @@ public class MainEvent implements Listener {
                         //发送信息给玩家
                         for (int I = 0; Message.size() > I; I++) {
                             PlayerJoinEvent.getPlayer().sendMessage(
-                                    translateAlternateColorCodes('&', Message.get(I).replace("{Url}", TPCraftPlugin.Message.getString("WebLogin.Login" + "?" + "Code=" + Code)))
+                                    translateAlternateColorCodes('&', Message.get(I).replace("{Url}", TPCraftPlugin.Plugin.getConfig().getString("WebLogin.Login") + "?" + "Code=" + Code))
                             );
                         }
                     }
@@ -100,9 +100,9 @@ public class MainEvent implements Listener {
                                 //请求互联服务器
                                 Request = Function.HttpGet(TPCraftPlugin.Plugin.getConfig().getString("Url.WebLogin.Success") + "?" + "ApiKey=" + TPCraftPlugin.Plugin.getConfig().getString("ApiKey") + "&Code=" + Code);
 
-                                //检查是否完成登入
+                                //检查请求状态
                                 if ((boolean)Request.get("Status")) {
-                                    //完成登入
+                                    //返回True
 
                                     //登入玩家
                                     AuthMeApi.getInstance().forceLogin(PlayerJoinEvent.getPlayer());
@@ -110,7 +110,7 @@ public class MainEvent implements Listener {
                                     //关闭定时任务
                                     this.cancel();
                                 } else {
-                                    //未完成登入
+                                    //返回False
 
                                     //发送信息给玩家
                                     PlayerJoinEvent.getPlayer().sendMessage(translateAlternateColorCodes('&', TPCraftPlugin.Message.getString("Prefix.WebLogin") + Request.get("Message")));

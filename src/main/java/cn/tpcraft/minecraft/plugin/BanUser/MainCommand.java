@@ -33,7 +33,7 @@ public class MainCommand implements CommandExecutor {
 
             //检查参数
             if (Args.length == 3) {
-                //包含一个参数
+                //包含三个参数
 
                 try {
                     //尝试
