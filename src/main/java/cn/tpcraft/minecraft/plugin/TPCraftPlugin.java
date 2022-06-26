@@ -1,12 +1,19 @@
 package cn.tpcraft.minecraft.plugin;
 
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.File;
 
 public final class TPCraftPlugin extends JavaPlugin {
 
     //插件主类
     public static Plugin Plugin;
+
+    //语言文件
+    public static FileConfiguration Message;
 
     /*
      * 插件加载
@@ -40,6 +47,11 @@ public final class TPCraftPlugin extends JavaPlugin {
     public void LoadConfig() {
         //保存默认配置文件
         saveDefaultConfig();
+        //保存默认语言文件
+        saveResource("message.yml", false);
+        //读取语言文件
+        File MessageFile = new File(getDataFolder() + "/", "message.yml");
+        Message = YamlConfiguration.loadConfiguration(MessageFile);
     }
 
     /*
@@ -53,7 +65,13 @@ public final class TPCraftPlugin extends JavaPlugin {
      * 注册指令
      */
     public void RegisterCommand() {
+        //检查BanUser启用
+        if ((boolean)Plugin.getConfig().get("BanUser.Enable")) {
+            //已启用
 
+            getCommand("ban").setExecutor(new cn.tpcraft.minecraft.plugin.BanUser.MainCommand());
+            getLogger().info("【TPCraftPlugin】BanUser模块已启动。");
+        }
     }
 
     /*
@@ -62,5 +80,8 @@ public final class TPCraftPlugin extends JavaPlugin {
     public void ReLoadConfig() {
         //重载配置文件
         reloadConfig();
+        //读取语言文件
+        File MessageFile = new File(getDataFolder() + "/", "message.yml");
+        Message = YamlConfiguration.loadConfiguration(MessageFile);
     }
 }

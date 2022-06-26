@@ -2,11 +2,11 @@
 # 前缀
 ####################
 Prefix:
-  TPCraftPlugin: "&7&l【&6&lTPCraftPlugin&7&l】 &c&l>> &r"
-  BanUser: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l封禁&7&l] &c&l>> &r"
-  PassVerify: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l通行证验证&7&l] &c&l>> &r"
-  Recharge: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l充值&7&l] &c&l>> &r"
-  WebLogin: "&7&l【&6&lTPCraft&7&l】&7&l[&6&l互联登入&7&l] &c&l>> &r"
+  TPCraftPlugin: "&7&l[&6&lTPCraftPlugin&7&l] &c&l>> &r"
+  BanUser: "&7&l[&6&lTPCraft&7&l] &7&l[&6&l封禁&7&l] &c&l>> &r"
+  PassVerify: "&7&l[&6&lTPCraft&7&l] &7&l[&6&l通行证验证&7&l] &c&l>> &r"
+  Recharge: "&7&l[&6&lTPCraft&7&l] &7&l[&6&l充值&7&l] &c&l>> &r"
+  WebLogin: "&7&l[&6&lTPCraft&7&l] &7&l[&6&l互联登入&7&l] &c&l>> &r"
 
 ####################
 # 错误
@@ -20,6 +20,7 @@ Error:
 ####################
 TPCraftPlugin:
   PermissionDenied: "权限不足。"
+  ConfigIsNull: "插件配置文件未填写完整。"
   ReloadConfig: "配置文件重载成功。"
   Help:
     - "--------------------"
@@ -43,14 +44,14 @@ BanUser:
   Success: "封禁成功。"
   Fail: "封禁失败，原因：{Message}。"
   Broadcast: "玩家 {Player} 被管理员封禁。"
-  Kick: "\n\n&c通行证封禁中\n\n&7&l【&6&l原因&7&l】&r{Reason}\n\n&7&l【&6&l解封日期&7&l】&r{UnBanDate}"
+  Kick: "&c通行证封禁中\n\n&7&l[&6&l原因&7&l] &r{Reason}\n\n&7&l[&6&l解封日期&7&l] &r{UnBanDate}"
 
 ####################
 # PassVerify
 ####################
 #原因变量 {Reason}
 PassVerify:
-  Kick: "\n\n&c你已被踢出服务器\n\n&7&l【&6&l原因&7&l】&r{Reason}\n\n&7&l【&6&l帮助&7&l】&r&nhttps://community.tpcraft.cn/d/33"
+  Kick: "&c你已被踢出服务器\n\n&7&l[&6&l原因&7&l] &r{Reason}\n\n&7&l[&6&l帮助&7&l] &r&nhttps://community.tpcraft.cn/d/33"
 
 ####################
 # Recharge
